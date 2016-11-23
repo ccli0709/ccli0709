@@ -1,0 +1,110 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+		<div id="phaser-example"></div>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12"></div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+
+
+
+
+} {
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js'></script>
+
+
+<script type="text/javascript">
+	var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', {
+		preload : preload,
+		create : create,
+		update : update,
+		render : render
+	});
+	function preload() {
+
+		game.load.image('background',
+				"/assets/phaser/camara/debug-grid-1920x1920.png");
+		game.load.image('player', "/assets/phaser/camara/star.png");
+
+	}
+
+	var player;
+	var cursors;
+
+	function create() {
+
+		game.add.tileSprite(0, 0, 1920, 1920, 'background');
+
+		game.world.setBounds(0, 0, 1920, 1920);
+
+		// 使用P2JS碰撞系統，sprite會依邊界來做旋轉，若不想有這個效果就要改用ARCADE
+		//game.physics.startSystem(Phaser.Physics.P2JS);
+		game.physics.startSystem(Phaser.Physics.ARCADE);
+
+		player = game.add.sprite(game.world.centerX, game.world.centerY,
+				'player');
+
+		// for P2JS
+		// game.physics.p2.enable(player);
+		game.physics.enable(player, Phaser.Physics.ARCADE);
+
+		cursors = game.input.keyboard.createCursorKeys();
+
+		game.camera.follow(player);
+
+	}
+
+	function update() {
+		// for P2JS
+		// player.body.setZeroVelocity();
+
+		player.body.velocity.x = 0;
+		player.body.velocity.y = 0;
+
+		if (cursors.up.isDown) {
+			// for P2JS
+			//player.body.moveUp(300);
+
+			player.body.velocity.y = -300;
+		} else if (cursors.down.isDown) {
+			// for P2JS
+			//player.body.moveDown(300);
+
+			player.body.velocity.y = 300;
+		}
+
+		if (cursors.left.isDown) {
+			// for P2JS
+			//player.body.moveLeft(300);
+
+			player.body.velocity.x = -300;
+		} else if (cursors.right.isDown) {
+			// for P2JS
+			//player.body.moveRight(300);
+
+			player.body.velocity.x = 300;
+		}
+
+	}
+
+	function render() {
+
+		game.debug.cameraInfo(game.camera, 32, 32);
+		game.debug.spriteCoords(player, 32, 500);
+
+	}
+</script>
+}

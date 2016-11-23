@@ -1,0 +1,104 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div ng-app="app" ng-controller="controller">
+
+		<div uib-alert ng-repeat="alert in alerts"
+			ng-class="'alert-' + (alert.type || 'warning')"
+			close="closeAlert($index)">{{alert.msg}}</div>
+
+		<h2>測試兩種頁籤方式，一種是內含頁籤內容，另一種就是重導網址來做SPA。</h2>
+		<uib-tabset justified="true"> <uib-tab heading="屬性">
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>生命</th>
+					<td>999</td>
+					<th>魔法</th>
+					<td>100</td>
+				</tr>
+				<tr>
+					<th>力量</th>
+					<td>100</td>
+					<th>體質</th>
+					<td>20</td>
+				</tr>
+			</tbody>
+		</table>
+
+		</uib-tab> <uib-tab heading="裝備">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>左手</th>
+					<td>匕首</td>
+					<th>右手</th>
+					<td>短劍</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		</uib-tab> <uib-tab heading="背包">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>品名</th>
+					<th>數量</th>
+					<th>效果</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>治療藥水</td>
+					<td>20</td>
+					<td>補充100生命</td>
+				</tr>
+				<tr>
+					<td>治療藥水</td>
+					<td>20</td>
+					<td>補充100生命</td>
+				</tr>
+				<tr>
+					<td>治療藥水</td>
+					<td>20</td>
+					<td>補充100生命</td>
+				</tr>
+			</tbody>
+		</table>
+		</uib-tab> </uib-tabset>
+		<hr />
+
+
+		<uib-tabset justified="true"> <uib-tab
+			heading="attributes" select='updateView("attributes")'></uib-tab> <uib-tab
+			heading="equips" select='updateView("equips")'></uib-tab> <uib-tab
+			heading="backpackers" select='updateView("backpackers")'></uib-tab> </uib-tabset>
+
+	</div>
+</div>
+<!-- /.row -->
+
+
+} {
+<!-- Bootstrap Core CSS -->
+
+<script
+	src='@routes.Assets.versioned("bower_components/angular/angular.min.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-route/angular-route.min.js")'></script>
+
+<script src='@routes.Assets.versioned("angularjs/ngtabs/app.js")'></script>
+<script
+	src='@routes.Assets.versioned("angularjs/ngtabs/controllers.js")'></script>
+}

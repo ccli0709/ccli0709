@@ -1,0 +1,60 @@
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+
+				<button class="btn btn-info" ng-click='back()'>
+					回到清單<i class="fa fa-undo" aria-hidden="true"></i>
+				</button>
+				&nbsp;&nbsp;&nbsp; 待辦事項[id:{{taskId}}] &nbsp;&nbsp;&nbsp;
+				
+				<button class="btn btn-warning" ng-click='pickTask()'>使用公用挑選視窗</button>
+			</div>
+			<div class="panel-body">
+				<div
+					ng-class='["alert", "alert-dismissable", {"alert-warning":isLoading,"alert-success":isSuccess && !isLoading, "alert-danger":!isSuccess && !isLoading}]'>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					{{message}}&nbsp;
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<form role="form">
+
+							<div class="form-group">
+								<label>名稱</label> <input class="form-control"
+									placeholder="請輸入名稱" ng-model='task.name'>
+							</div>
+							<div class="form-group">
+								<label>到期日</label> <input class="form-control"
+									placeholder="請輸入日期" ng-model='task.dueDate'>
+							</div>
+
+							<div class="form-group">
+								<label>狀態</label> <select class="form-control"
+									ng-model='task.status' ng-change="changeStatus()">
+									<option value='1'>進行中</option>
+									<option value='9'>已完成</option>
+								</select>
+							</div>
+
+							<button class="btn btn-primary" ng-click='create()'
+								ng-disabled='isLoading'>新增</button>
+							<button class="btn btn-warning" ng-click='update()'
+								ng-disabled='isLoading'>修改</button>
+							<button class="btn btn-danger" ng-click='delete()'
+								ng-disabled='isLoading'>刪除</button>
+						</form>
+					</div>
+					<!-- /.col-lg-12 (nested) -->
+				</div>
+				<!-- /.row (nested) -->
+			</div>
+			<!-- /.panel-body -->
+		</div>
+		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

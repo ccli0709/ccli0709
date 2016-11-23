@@ -1,0 +1,72 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div ng-app="app" ng-controller="controller">
+	<div class="row">
+		<div class="col-lg-8">
+			<uib-pagination class="pagination-sm" style="margin:3px"
+				boundary-link-numbers="true" previous-text="上一頁" next-text="下一頁"
+				total-items="pagination.totalItems"
+				items-per-page="pagination.itemsPerPage"
+				ng-model="pagination.currentPage" num-pages="pagination.numPages"
+				max-size="pagination.maxSize" ng-change="read()"
+				ng-disabled="isLoading"> </uib-pagination>
+			<span class="label label-warning" ng-show='isLoading'
+				style='margin: 1em'>讀取中</span>
+		</div>
+		<div class="col-lg-4 form-inline">
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon">關鍵字</div>
+					<input class='form-control' ng-model='keyword'
+						ng-keyup='$event.keyCode == 13 && read()' ng-disabled='isLoading'></input>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<table class="table table-striped table-bordered">
+		<tr>
+			<th></th>
+			<th><i class="fa fa-sort-asc" aria-hidden="true"
+				ng-click='sort("id","asc")'></i> 會員編號 <i class="fa fa-sort-desc"
+				aria-hidden="true" ng-click='sort("id","desc")'></i></th>
+			<th><i class="fa fa-sort-asc" aria-hidden="true"
+				ng-click='sort("name","asc")'></i> 姓名 <i class="fa fa-sort-desc"
+				aria-hidden="true" ng-click='sort("name","desc")'></i></th>
+			<th><i class="fa fa-sort-asc" aria-hidden="true"
+				ng-click='sort("email","asc")'></i> 電子郵件 <i class="fa fa-sort-desc"
+				aria-hidden="true" ng-click='sort("email","desc")'></i></th>
+			<th><i class="fa fa-sort-asc" aria-hidden="true"
+				ng-click='sort("facebookId","asc")'></i> 臉書帳號 <i
+				class="fa fa-sort-desc" aria-hidden="true"
+				ng-click='sort("facebookId","desc")'></i></th>
+		</tr>
+		<tr ng-repeat='item in items'>
+			<td>
+				<button class="btn btn-primary btn-xs" type="button"
+					ng-click="modalOk($index)">確認</button>
+			</td>
+			<td>{{ item.id }}</td>
+			<td>{{ item.name }}</td>
+			<td>{{ item.email }}</td>
+			<td>{{ item.facebookId }}</td>
+		</tr>
+	</table>
+</div>
+
+} {
+<script src='/assets/javascripts/member/list.js'></script>
+
+<script src='/assets/ng_modals/confirmModal.js'></script>
+
+<script src='/assets/ng_modals/pickTaskModal.js'></script>
+
+}

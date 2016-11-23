@@ -1,0 +1,72 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div id="wrapper" ng-app="app" ng-controller="controller">
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<a href="https://angular-ui.github.io/bootstrap/" target="blank">angular-ui
+				bootstrap</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+
+			<uib-pagination class="pagination-sm" boundary-link-numbers="true"
+				previous-text="上一頁" next-text="下一頁"
+				total-items="customers.totalItems"
+				items-per-page="customers.itemsPerPage"
+				ng-model="customers.currentPage" num-pages="customers.numPages"
+				max-size="customers.maxSize" ng-change="read()"> </uib-pagination>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<p class="input-group" style='width: 200px'>
+				<input type="text" class="form-control"
+					uib-datepicker-popup="yyyyMMdd" ng-model="myDate"
+					is-open="popup1.opened" datepicker-options="dateOptions"
+					ng-required="true" close-text="Close" /> <span
+					class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1()">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<button class="btn btn-warning" ng-click='showConfirm()'>新增(測試)</button>
+
+		</div>
+	</div>
+	<div class="row" style='margin-top: 1em'>
+		<div class="col-md-12">
+			<button class="btn btn-warning" ng-click='pickTask()'>使用公用挑選視窗</button>
+
+			<div class="alert alert-success">
+				<strong>[{{pickedTask.id}}]</strong> {{pickedTask.name}}
+			</div>
+		</div>
+	</div>
+</div>
+
+} {
+<script src='@routes.Assets.versioned("angularjs/ngui/app.js")'></script>
+
+<script src='@routes.Assets.versioned("ng_modals/confirmModal.js")'></script>
+
+<script src='@routes.Assets.versioned("ng_modals/pickTaskModal.js")'></script>
+
+}

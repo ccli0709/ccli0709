@@ -1,0 +1,52 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div ng-app="myApp">
+
+		<p>
+			<a href="#/">Main</a>
+		</p>
+
+		<a href="#red">Red</a> <a href="#green">Green</a> <a href="#blue">Blue</a>
+
+		<div ng-view></div>
+	</div>
+</div>
+<!-- /.row -->
+
+
+
+
+
+
+} {
+<!-- Bootstrap Core CSS -->
+<script
+	src='@routes.Assets.versioned("bower_components/angular/angular.min.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-route/angular-route.min.js")'></script>
+
+<script>
+	var app = angular.module("myApp", [ "ngRoute" ]);
+	app.config(function($routeProvider) {
+		$routeProvider.when("/", {
+			templateUrl : '@routes.Assets.versioned("angularjs/main.htm")'
+		}).when("/red", {
+			templateUrl : '@routes.Assets.versioned("angularjs/red.htm")'
+		}).when("/green", {
+			templateUrl : '@routes.Assets.versioned("angularjs/green.htm")'
+		}).when("/blue", {
+			templateUrl : '@routes.Assets.versioned("angularjs/blue.htm")'
+		});
+	});
+</script>
+}

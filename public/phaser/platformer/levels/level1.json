@@ -1,0 +1,46 @@
+{
+	"assets": {
+		"map_tiles": {
+			"type": "image",
+			"source": "/assets/phaser/platformer/images/tiles_spritesheet.png"
+		},
+		"player_spritesheet": {
+			"type": "spritesheet",
+			"source": "/assets/phaser/platformer/images/player_spritesheet.png",
+			"frame_width": 28,
+			"frame_height": 30,
+			"frames": 5,
+			"margin": 1,
+			"spacing": 1
+		},
+		"slime_image": {
+			"type": "image",
+			"source": "/assets/phaser/platformer/images/slime.png"
+			
+		},
+		"fly_spritesheet": {
+			"type": "spritesheet",
+			"source": "/assets/phaser/platformer/images/fly_spritesheet.png",
+			"frame_width": 37,
+			"frame_height": 20,
+			"frames": 2
+		},
+		"goal_image": {
+			"type": "image",
+			"source": "/assets/phaser/platformer/images/goal.png"
+		},
+		"level_tilemap": {
+			"type": "tilemap",
+			"source": "/assets/phaser/platformer/tilemaps/level1.json"
+		}
+	},
+	"groups": [
+		"enemies",
+		"goals",
+		"players"
+	],
+	"map": {
+		"key": "level_tilemap",
+		"tileset": "map_tiles"
+	}
+}

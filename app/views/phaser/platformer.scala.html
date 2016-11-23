@@ -1,0 +1,42 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<div id="phaserGame"></div>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12"></div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+} {
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/states/BootState.js")'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/states/LoadingState.js")'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/states/TiledState.js")'></script>
+
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/prefabs/Prefab.js")'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/prefabs/Enemy.js")'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/prefabs/FlyingEnemy.js")'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/prefabs/Goal.js")'></script>
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/prefabs/Player.js")'></script>
+
+<script
+	src='@routes.Assets.versioned("phaser/platformer/javascripts/main.js")'></script>
+}

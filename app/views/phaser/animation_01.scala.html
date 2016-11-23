@@ -1,0 +1,72 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+		<div id="phaser-example"></div>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12"></div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+} {
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js'></script>
+
+<script type="text/javascript">
+	var game = new Phaser.Game(800, 600, Phaser.WEBGL, 'phaser-example', {
+		preload : preload,
+		create : create,
+		update : update
+	});
+	function preload() {
+		game.load.atlasJSONHash('dragon',
+				'/assets/phaser/LeshySpriteSheetTool/texture.png',
+				'/assets/phaser/LeshySpriteSheetTool/texture.json');
+	}
+
+	var dragon;
+	var cursors;
+
+	function create() {
+
+		dragon = game.add.sprite(200, 200, 'dragon');
+		//dragon.animations.add('run',[0,1,2,3]);
+		dragon.animations.add('run');
+		dragon.animations.play('run', 30, true);
+
+		game.physics.arcade.enable(dragon);
+		cursors = game.input.keyboard.createCursorKeys();
+	}
+
+	function update() {
+		dragon.body.velocity.x = 0;
+		dragon.body.velocity.y = 0;
+
+		if (cursors.left.isDown) {
+			//  Move to the left
+			dragon.body.velocity.x = -350;
+		} else if (cursors.right.isDown) {
+			//  Move to the right
+			dragon.body.velocity.x = 350;
+		}
+
+		if (cursors.up.isDown) {
+			//  Move to the right
+			dragon.body.velocity.y = -350;
+		} else if (cursors.down.isDown) {
+			//  Move to the right
+			dragon.body.velocity.y = 350;
+		}
+	}
+</script>
+
+}

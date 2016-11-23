@@ -1,0 +1,58 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div ng-app="app" ng-controller="controller">
+		<p class="input-group" style='width: 200px'>
+			<input type="text" class="form-control"
+				uib-datepicker-popup="yyyyMMdd" ng-model="getFromDate"
+				is-open="popup1.opened" datepicker-options="dateOptions"
+				ng-required="true" close-text="Close" /> <span
+				class="input-group-btn">
+				<button type="button" class="btn btn-default" ng-click="open1()">
+					<i class="glyphicon glyphicon-calendar"></i>
+				</button>
+			</span>
+		</p>
+		<div gantt data="data" allow-side-resizing="false"
+			headers="['month', 'day']" headers-formats="headersFormats"
+			date-frames="dateFrames" from-date='getFromDate' to-date='getToDate'
+			current-date-value='getToday'>
+			<gantt-table></gantt-table>
+			<gantt-movable></gantt-movable>
+			<gantt-tooltips></gantt-tooltips>
+		</div>
+
+	</div>
+</div>
+<!-- /.row -->
+
+
+} {
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet"
+	href='@routes.Assets.versioned("bower_components/angular-gantt/dist/angular-gantt.min.css")' />
+<link rel="stylesheet"
+	href='@routes.Assets.versioned("bower_components/angular-gantt/dist/angular-gantt-plugins.min.css")' />
+
+<!-- 使用angular-gantt前必須先引用angular-moment -->
+<script
+	src='@routes.Assets.versioned("bower_components/moment/moment.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-moment/angular-moment.min.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-gantt/dist/angular-gantt.min.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-gantt/dist/angular-gantt-plugins.min.js")'></script>
+
+<script src='@routes.Assets.versioned("angularjs/gantt/app.js")'></script>
+<script src='@routes.Assets.versioned("angularjs/gantt/controllers.js")'></script>
+}

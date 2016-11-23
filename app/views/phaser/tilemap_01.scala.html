@@ -1,0 +1,58 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+		<div id="phaser-example"></div>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12"></div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+
+
+
+
+} {
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js'></script>
+
+
+<script type="text/javascript">
+	var game = new Phaser.Game(1600, 640, Phaser.AUTO, 'phaser-example', {
+		preload : preload,
+		create : create,
+		update : update
+	});
+	var map;
+	var layer;
+
+	function preload() {
+		game.load.tilemap('map',
+				"/assets/phaser/phaser/layer_01.json", null,
+				Phaser.Tilemap.TILED_JSON);
+		game.load.image('super_mario',
+				"/assets/phaser/phaser/super_mario.png");
+	}
+
+	function create() {
+		game.stage.backgroundColor = '#787878';
+		map = game.add.tilemap('map');
+		map.addTilesetImage('super_mario', 'super_mario');
+
+		layer = map.createLayer('World1');
+	}
+
+	function update() {
+
+	}
+</script>
+}

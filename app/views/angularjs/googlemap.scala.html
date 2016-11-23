@@ -1,0 +1,42 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style>
+.angular-google-map-container {
+	height: 400px;
+}
+</style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div ng-app="app" ng-controller="controller">
+	<div class="row">
+
+		<div style='margin: 1em'>
+			<button class='btn btn-info' ng-click='go("main")'>大門</button>
+			<button class='btn btn-info' ng-click='go("east")'>東門</button>
+			<button class='btn btn-info' ng-click='addMarker()'>加個亂數位置</button>
+		</div>
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+		<ui-gmap-markers models="markers" coords="'self'" icon="marker_yellow"
+			fit="true" labelContent="'title'" options="'options'"> </ui-gmap-markers> </ui-gmap-google-map>
+	</div>
+</div>
+<!-- /.row -->
+
+
+} {
+
+<script
+	src='@routes.Assets.versioned("bower_components/lodash/dist/lodash.min.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-simple-logger/dist/angular-simple-logger.min.js")'></script>
+<script
+	src='@routes.Assets.versioned("bower_components/angular-google-maps/dist/angular-google-maps.min.js")'></script>
+<script src='@routes.Assets.versioned("angularjs/googlemap/app.js")'></script>
+<script
+	src='@routes.Assets.versioned("angularjs/googlemap/controllers.js")'></script>
+}

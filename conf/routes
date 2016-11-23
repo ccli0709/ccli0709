@@ -1,0 +1,68 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+GET     /facebook/login             controllers.FacebookController.login
+GET     /facebook/authenticate      controllers.FacebookController.authenticate
+GET     /logout                     controllers.HomeController.logout
+
+
+# ==========
+GET		/member/list				controllers.MemberController.list
+GET		/member/profile				controllers.MemberController.profile
+# ==========
+
+
+
+
+
+
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# 
+GET		/api/tasks					controllers.HomeController.getTasks
+GET		/api/tasks/:id				controllers.HomeController.getTask(id: Long)
+POST	/api/tasks					controllers.HomeController.createTask
+PUT		/api/tasks/:id				controllers.HomeController.updateTask(id: Long)
+DELETE	/api/tasks/:id				controllers.HomeController.deleteTask(id: Long)
+
+#Phaser
+GET		/phaser/:page				controllers.PhaserController.phaser(page: String)
+GET		/phaserGame/spaceHipster	controllers.PhaserController.spaceHipster()
+GET		/phaserGame/topDown			controllers.PhaserController.topDown()
+GET		/phaserGame/platformer		controllers.PhaserController.platformer()
+
+GET     /util/png					controllers.HomeController.utilPng()
+GET     /util/qrcode				controllers.HomeController.utilQrcode()
+
+#JasperReport
+GET		/report/index				controllers.ReportController.index()
+GET		/report/download/unicode	controllers.ReportController.unicode()
+
+#AngularJS SPA
+GET		/angularjs/index			controllers.AngularJsController.index()
+GET		/angularjs/task				controllers.AngularJsController.task()
+GET		/angularjs/ngui				controllers.AngularJsController.ngui()
+GET		/angularjs/ngtabs			controllers.AngularJsController.ngtabs()
+GET		/angularjs/gantt			controllers.AngularJsController.gantt()
+GET		/angularjs/googlemap		controllers.AngularJsController.googlemap()
+GET		/admin						controllers.AdminController.index()
+
+
+### API - Member ###
+# https://laravel.com/docs/5.1/controllers
+GET		/rest/member				controllers.rest.MemberController.index()
+POST	/rest/member/create			controllers.rest.MemberController.create()
+POST	/rest/member				controllers.rest.MemberController.store()
+GET		/rest/member/:id			controllers.rest.MemberController.show(id: Long)
+GET		/rest/member/:id/edit		controllers.rest.MemberController.edit(id: Long)
+PUT		/rest/member/:id			controllers.rest.MemberController.update(id: Long)
+DELETE	/rest/member/:id			controllers.rest.MemberController.destroy(id: Long)

@@ -1,0 +1,104 @@
+@(viewState: models.rest.ViewState) @main(viewState = viewState) {
+<style></style>
+} {
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">@viewState.getPageTitle()</h1>
+		<h2>載入opengameart的素材來試試，如果是二維排列的話是否可以不用JSON。</h2>
+		<div id="phaser-example"></div>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12"></div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+
+
+
+
+} {
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js'></script>
+
+<script type="text/javascript">
+	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', {
+		preload : preload,
+		create : create,
+		update : update,
+		render : render
+	});
+
+	function preload() {
+		game.load
+				.spritesheet(
+						'man',
+						"/assets/phaser/opengameart/ennemy_streetboy-one_spritesheet.png",
+						50, 50, 12);
+	}
+
+	var man;
+	var cursors;
+
+	function render() {
+		// 用debug來檢視角色碰撞偵測的範圍
+		game.debug.body(man);
+	}
+
+	function create() {
+		game.stage.backgroundColor = "#000000";
+		man = game.add.sprite(100, 500, 'man');
+		man.anchor.setTo(0.5, 0.5);
+		man.scale.setTo(4, 4);
+		man.animations.add('walk', [ 0, 1, 2, 3 ]);
+		man.animations.add('attack', [ 4, 5, 6 ]);
+		man.animations.add('dead', [ 8, 9, 10, 11 ]);
+
+		game.physics.arcade.enable(man);
+		// 這裡可以設定角色碰撞範圍
+		man.body.setSize(13, 34, 18, 13);
+
+		cursors = game.input.keyboard.createCursorKeys();
+
+	}
+
+	function update() {
+
+		if (man.body.velocity.x > 0) {
+			man.scale.x = Math.abs(man.scale.x);
+		}
+
+		if (man.body.velocity.x < 0) {
+			man.scale.x = Math.abs(man.scale.x) * -1;
+		}
+
+		man.body.velocity.x = 0;
+		man.body.velocity.y = 0;
+
+		if (cursors.left.isDown) {
+			//  Move to the left
+			man.body.velocity.x = -350;
+			man.animations.play('walk', 15, false);
+		} else if (cursors.right.isDown) {
+			//  Move to the right
+			man.body.velocity.x = 350;
+			man.animations.play('walk', 15, false);
+		}
+
+		if (cursors.up.isDown) {
+			//  Move to the right
+			//man.body.velocity.y = -350;
+			man.animations.play('attack', 20, false);
+		} else if (cursors.down.isDown) {
+			//  Move to the right
+			//man.body.velocity.y = 350;
+			man.animations.play('dead', 5, false);
+		}
+	}
+</script>
+}
