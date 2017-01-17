@@ -15,9 +15,14 @@ public class RwdController extends Controller {
 
 		ViewState viewState = Secured.getViewState(Context.current());
 
+		// TODO:不知道如何由變數去指定VIEW的名稱
+
 		if (page.equals("basic_01")) {
 			viewState.setPageTitle("RWD重新學習_01");
 			return ok(views.html.rwd.basic_01.render(viewState));
+		} else if (page.equals("basic_02")) {
+			viewState.setPageTitle("RWD重新學習_02");
+			return ok(views.html.rwd.basic_02.render(viewState));
 		} else {
 			return ok(views.html.rwd.basic_01.render(viewState));
 		}
