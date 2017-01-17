@@ -34,6 +34,9 @@ POST	/api/tasks					controllers.HomeController.createTask
 PUT		/api/tasks/:id				controllers.HomeController.updateTask(id: Long)
 DELETE	/api/tasks/:id				controllers.HomeController.deleteTask(id: Long)
 
+#RWD
+GET		/rwd/:page					controllers.RwdController.rwd(page: String)
+
 #Phaser
 GET		/phaser/:page				controllers.PhaserController.phaser(page: String)
 GET		/phaserGame/spaceHipster	controllers.PhaserController.spaceHipster()
