@@ -43,6 +43,9 @@ public class PhaserController extends Controller {
 		} else if (page.equals("first_sample")) {
 			viewState.setPageTitle("官網的第一個練習");
 			return ok(views.html.phaser.first_sample.render(viewState));
+		} else if (page.equals("first_mobile")) {
+			viewState.setPageTitle("手機遊戲製作練習");
+			return ok(views.html.phaser.first_mobile.render(viewState));
 		} else if (page.equals("first_game")) {
 			viewState.setPageTitle("第一個練習遊戲");
 			return ok(views.html.phaser.first_game.render(viewState));

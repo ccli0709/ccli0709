@@ -1,0 +1,112 @@
+@(viewState: models.rest.ViewState) @main_phaser(viewState = viewState) { }{ }{
+<script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
+<script type="text/javascript">
+	// TODO:希望達到手機全螢幕大小
+	var game = new Phaser.Game(320, 568, Phaser.AUTO, 'game');
+
+	game.States = {}; //创建一个对象来存放要用到的state
+
+	//boot场景，用来做一些游戏启动前的准备
+	game.States.boot = function() {
+		this.preload = function() {
+
+			//加载进度条图片资源
+			game.load.image('logo',
+					'@routes.Assets.versioned("phaser/first_mobile/logo.jpg")');
+			game.load
+					.image('loading',
+							'@routes.Assets.versioned("phaser/first_mobile/preloader.gif")');
+
+		};
+		this.create = function() {
+			//加载完成后，调用preload场景
+			game.state.start('preload');
+		};
+
+	}
+
+	//prelaod场景，用来显示资源加载进度
+	game.States.preload = function() {
+		this.preload = function() {
+
+			this.splash = this.add.sprite(this.game.world.centerX,
+					this.game.world.centerY, 'logo');
+			this.splash.anchor.setTo(0.5);
+
+			//创建显示loading进度的sprite
+			var preloadSprite = game.add.sprite(50, game.height - 100,
+					'loading');
+			//用setPreloadSprite方法来实现动态进度条的效果
+			game.load.setPreloadSprite(preloadSprite);
+
+			//以下为要加载的资源
+			game.load
+					.image('background',
+							'@routes.Assets.versioned("phaser/first_mobile/background.png")'); //游戏背景图
+			game.load
+					.image('ground',
+							'@routes.Assets.versioned("phaser/first_mobile/ground.png")'); //地面
+			game.load
+					.image('title',
+							'@routes.Assets.versioned("phaser/first_mobile/title.png")'); //游戏标题
+			game.load.spritesheet('bird',
+					'@routes.Assets.versioned("phaser/first_mobile/bird.png")',
+					34, 24, 3); //鸟
+			game.load
+					.image('btn',
+							'@routes.Assets.versioned("phaser/first_mobile/start-button.png")'); //按钮
+			game.load
+					.spritesheet(
+							'pipe',
+							'@routes.Assets.versioned("phaser/first_mobile/pipes.png")',
+							54, 320, 2); //管道
+			game.load
+					.bitmapFont(
+							'flappy_font',
+							'@routes.Assets.versioned("phaser/first_mobile/fonts/flappyfont/flappyfont.png")',
+							'@routes.Assets.versioned("phaser/first_mobile/fonts/flappyfont/flappyfont.fnt")');//显示分数的字体
+			game.load.audio('fly_sound',
+					'@routes.Assets.versioned("phaser/first_mobile/flap.wav")');//飞翔的音效
+			game.load
+					.audio('score_sound',
+							'@routes.Assets.versioned("phaser/first_mobile/score.wav")');//得分的音效
+			game.load
+					.audio('hit_pipe_sound',
+							'@routes.Assets.versioned("phaser/first_mobile/pipe-hit.wav")'); //撞击管道的音效
+			game.load.audio('hit_ground_sound',
+					'@routes.Assets.versioned("phaser/first_mobile/ouch.wav")'); //撞击地面的音效
+
+			game.load
+					.image('ready_text',
+							'@routes.Assets.versioned("phaser/first_mobile/get-ready.png")'); //get ready图片
+			game.load
+					.image('play_tip',
+							'@routes.Assets.versioned("phaser/first_mobile/instructions.png")'); //玩法提示图片
+			game.load
+					.image('game_over',
+							'@routes.Assets.versioned("phaser/first_mobile/gameover.png")'); //gameover图片
+			game.load
+					.image('score_board',
+							'@routes.Assets.versioned("phaser/first_mobile/scoreboard.png")'); //得分板
+		}
+		this.create = function() {
+			game.state.start('menu'); //当以上所有资源都加载完成后就可以进入menu游戏菜单场景了
+		}
+	}
+
+	game.States.menu = function() {
+	} //menu场景，游戏菜单
+	game.States.play = function() {
+	} //play场景，正式的游戏部分
+
+	//把定义好的场景添加到游戏中
+	game.state.add('boot', game.States.boot);
+	game.state.add('preload', game.States.preload);
+	game.state.add('menu', game.States.menu);
+	game.state.add('play', game.States.play);
+
+	//调用boot场景来启动游戏
+	game.state.start('boot');
+</script>
+
+}
