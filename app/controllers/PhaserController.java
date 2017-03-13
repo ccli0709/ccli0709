@@ -37,7 +37,17 @@ public class PhaserController extends Controller {
 
 		ViewState viewState = Secured.getViewState(Context.current());
 
-		if (page.equals("animation_02")) {
+		if (page.equals("hello_world")) {
+			viewState.setPageTitle("Hello, World!");
+			return ok(views.html.phaser.hello_world.render(viewState));
+		} else if (page.equals("first_sample")) {
+			viewState.setPageTitle("官網的第一個練習");
+			return ok(views.html.phaser.first_sample.render(viewState));
+		} else if (page.equals("first_game")) {
+			viewState.setPageTitle("第一個練習遊戲");
+			return ok(views.html.phaser.first_game.render(viewState));
+
+		} else if (page.equals("animation_02")) {
 			viewState.setPageTitle("使用OpenGameArt下載的角色動畫");
 			return ok(views.html.phaser.animation_02.render(viewState));
 		} else if (page.equals("tilemap_01")) {

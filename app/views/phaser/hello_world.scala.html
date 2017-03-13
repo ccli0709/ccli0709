@@ -1,0 +1,29 @@
+@(viewState: models.rest.ViewState) @main_phaser(viewState = viewState) { }{ }{
+
+<script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+
+		var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {
+			preload : preload,
+			create : create
+		});
+
+		function preload() {
+
+			game.load.image('logo',
+					'@routes.Assets.versioned("phaser/hello_world/phaser.png")');
+
+		}
+
+		function create() {
+
+			var logo = game.add.sprite(game.world.centerX, game.world.centerY,
+					'logo');
+			logo.anchor.setTo(0.5, 0.5);
+
+		}
+
+	};
+</script>
+}

@@ -4,13 +4,11 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 
-libraryDependencies ++= Seq(
-  javaJdbc,
-  cache,
-  javaWs
-)
+libraryDependencies += javaJdbc
+libraryDependencies += cache
+libraryDependencies += javaWs
 
 // https://mvnrepository.com/artifact/com.google.guava/guava
 libraryDependencies += "com.google.guava" % "guava" % "19.0"

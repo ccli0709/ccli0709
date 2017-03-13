@@ -1,0 +1,25 @@
+@(viewState: models.rest.ViewState)(style: Html)(content: Html)(script: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0"
+>
+<head>
+
+<title>Phaser - @viewState.getPageTitle()</title>
+
+<style>
+body {
+	maring: 0;
+}
+</style>
+
+@style
+
+</head>
+<body>@content @script
+
+</body>
+</html>
