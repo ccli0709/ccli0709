@@ -2,18 +2,18 @@
 <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
 <script type="text/javascript">
 	// TODO:希望達到手機全螢幕大小
-	var game = new Phaser.Game(320, 568, Phaser.AUTO, 'game');
-	// 	game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-	// 	game.scale.minWidth = 320;
-	// 	game.scale.minHeight = 480;
-	// 	game.scale.maxWidth = 768;
-	// 	game.scale.maxHeight = 1152;
-
+	var game = new Phaser.Game(320, 505, Phaser.AUTO, 'game'); //实例化game
 	game.States = {}; //创建一个对象来存放要用到的state
 
 	//boot场景，用来做一些游戏启动前的准备
 	game.States.boot = function() {
 		this.preload = function() {
+
+			if (!game.device.desktop) {//移动设备适应
+				this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+				this.scale.forcePortrait = true;
+				this.scale.refresh();
+			}
 
 			//加载进度条图片资源
 			game.load.image('logo',
